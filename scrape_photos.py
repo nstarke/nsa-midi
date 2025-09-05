@@ -75,7 +75,7 @@ def main():
     # Download images
     for idx, file_url in enumerate(file_urls):
         ext = get_extension(file_url)
-        save_path = os.path.join(args.output_dir, f"{args.query}_{args.type}_{(idx+1).rjust(l)}{ext}")
+        save_path = os.path.join(args.output_dir, f"{args.query}_{args.type}_{str(idx+1).rjust(l)}{ext}")
         download_image(file_url, save_path)
 
 if __name__ == "__main__":
