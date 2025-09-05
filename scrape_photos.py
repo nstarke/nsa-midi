@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 import os, argparse, requests
 
-# Define the search URL
+# Adapted from https://gist.github.com/geobabbler/5a0a03827792a3f1915897e94416edb5
 
 def get_extension(url):
     path = urlparse(url).path   # extract the path part of the URL
@@ -71,10 +71,11 @@ def main():
     search_url = f"https://commons.wikimedia.org/w/index.php?search={args.query}&title=Special:MediaSearch&go=Go&type=image"
     file_urls = get_image_urls(search_url, args.count)
 
+    l = len(str(args.count))
     # Download images
     for idx, file_url in enumerate(file_urls):
         ext = get_extension(file_url)
-        save_path = os.path.join(args.output_dir, f"{args.query}_{args.type}_{idx+1}{ext}")
+        save_path = os.path.join(args.output_dir, f"{args.query}_{args.type}_{(idx+1).rjust(l)}{ext}")
         download_image(file_url, save_path)
 
 if __name__ == "__main__":
