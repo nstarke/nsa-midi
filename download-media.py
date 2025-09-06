@@ -47,7 +47,6 @@ def get_audio_urls(search_url, max_audios=10):
                         break
     return res
 
-
 def get_video_urls(search_url, max_videos=10):
     # sdms-audio-result__title
     response = requests.get(search_url, headers=headers)
@@ -68,7 +67,6 @@ def get_video_urls(search_url, max_videos=10):
                 if 'upload.wikimedia.org' in tag and url_ext == ext:
                     res.append(tag)
     return res
-
 
 # Function to get image URLs from Wikimedia Commons search results
 def get_image_urls(search_url, max_images=10):
@@ -131,4 +129,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
