@@ -50,7 +50,7 @@ j.connect((msg) => {
   if ((status & 0xf0) === 0x90 && velocity > 0) {
     const url = jsonMap[note % jsonMap.length]
     if (process.env['DEBUG']) {
-      console.log(`Note On received: note=${note}, velocity=${velocity}, exploit=${exploitName}`);
+      console.log(`Note On received: note=${note}, velocity=${velocity}, url=${url}`);
     }
     fetch(url);
   }
