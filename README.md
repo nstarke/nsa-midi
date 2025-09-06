@@ -15,8 +15,12 @@ On Linux Systems, you will need `alsa-utils` and `jq` installed:
 sudo apt install alsa-utils jq
 ```
 
+The NodeJS application depends on the [jazz](https://jazz-soft.net/) MIDI library, which does NOT work with NodeJS on ARM hosts.  I found this out when trying to set up the NodeJS application on a Raspberry Pi.  I think the Jazz NodeJS integration only supports x86_64.
+
+It *might* work in a client-side, browser-based context on a Raspberry Pi, but I did not try that.
+
 ## Network Setup
-For my set up, I have a small Intel x86_64 host connected via ethernet to the NSA Selector Eurorack Module, and then another ethernet connection from the second NSA Selector ethernet port to a switch.  Also plugged into that switch is a Raspberry Pi running an HTTP webserver.  Everything connected to that switch is on the same VLAN.
+For my set up, I have a small Intel x86_64 host connected via ethernet to the first port of the NSA Selector Eurorack Module, and then another ethernet connection from the second NSA Selector ethernet port to a switch.  Also plugged into that switch is a Raspberry Pi running an HTTP webserver.  Everything connected to that switch is on the same VLAN.
 
 Both the Raspberry Pi and the Intel x86_64 host also have WLAN connections to the same Wireless network.  This is for SSHing into each of these hosts without sending traffic over the ethernet connection and thereby creating unintended audio artifacts as the Eurorack module converts the SSH traffic into sound.
 
@@ -28,7 +32,7 @@ Both the Raspberry Pi and the Intel x86_64 host also have WLAN connections to th
 To enable DEBUG mode, which provides verbose output logging, set a process environment variable for `DEBUG`.
 
 For example:
-```
+```bash
 DEBUG=1 node index.js --device 'USB MIDI Device' --jsonMap current-track.json
 ```
 
