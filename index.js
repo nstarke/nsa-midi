@@ -1,4 +1,4 @@
-const fs = require("fs").promises;
+const fs = require("fs");
 const JZZ = require('jzz');
 const minimist = require('minimist');
 const fetch = require('node-fetch');
