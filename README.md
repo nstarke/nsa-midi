@@ -1,3 +1,7 @@
+<video src="./nsa-midi.mp4" controls width="600">
+  Your browser does not support the video tag.
+</video>
+
 # NSA-MIDI
 This repository contains a NodeJS Command Line Application that maps MIDI Notes to URLs to fetch when the associated MIDI note is received from a MIDI device.
 
