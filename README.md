@@ -11,10 +11,10 @@ The NodeJS Script expects a file path to a JSON file.  That JSON file needs to b
 I built this application to work with [https://lectronz.com/products/thensaselector](https://lectronz.com/products/thensaselector), which is a Eurorack module that converts network traffic to audio.  
 
 ## Configuration
-On Linux Systems, you will need `alsa-utils` installed:
+On Linux Systems, you will need `alsa-utils` and `jq` installed:
 
 ```
-sudo apt install alsa-utils
+sudo apt install alsa-utils jq
 ```
 
 ## Arguments
