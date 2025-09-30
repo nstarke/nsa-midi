@@ -52,6 +52,8 @@ j.connect((msg) => {
     if (process.env['DEBUG']) {
       console.log(`Note On received: note=${note}, velocity=${velocity}, url=${url}`);
     }
-    fetch(url);
+    fetch(url, {
+      headers: { "Connection": "close" }
+    }).catch(() => {});
   }
 });
