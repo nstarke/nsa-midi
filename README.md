@@ -62,9 +62,47 @@ options:
 * `type` is either `audio`, `video`, or `image` for what type of files to download from wikipedia.
 * `output_dir` is the data directory to write the downloaded files to.
 
-### Python3 Script Example
+### Python3 "download-media.py" Script Example
 ```bash
 $ python3 download-media.py "ghosts" 10 video /var/www/html/ghosts
+```
+
+## Python3 "pngjpg2bmp.py"
+
+Now that we sit on a bunch of compressed PNG and JPG files you might want to convert them to BMP format, as BMP is a uncompressed format which gives us two advantages: the files get larger, so the audio will be longer. and second, we don't just hear white noise from compressed data, but instead we can really listen to the pixels.
+
+```bash
+$ ./pngjpg2bmp.py
+Usage: ./pngjpg2bmp.py <src_dir> <dst_dir>
+  src_dir: source directory containing PNG/JPG images
+  dst_dir: destination directory for BMP images
+```
+
+* `src_dir` is the source directory containing PNG/JPG images to convert
+* `dst_dir` is the destination directory where BMP files will be saved
+
+### Python3 "pngjpg2bmp.py" Script Example
+```bash
+$ ./pngjpg2bmp.py compressed_files bmp_files
+```
+
+## Python3 "thinoutBMPs.py"
+
+Now that we sit on a bunch of uncompressed BMP files the bunch might be too large and thinoutBMPs.py is there to just keep the 37 largest BMPs, in case your MIDI keyboard has only 37 keys (or 88 in case you play a grand MIDI piano).
+
+```bash
+$ ./thinoutBMPs.py
+Usage: ./thinoutBMPs.py [-y] <dir_path> <keep>
+  -y: optional flag to skip confirmation prompt
+  dir_path: directory containing BMP files to thin out
+  keep: number of largest files to keep (must be a positive integer)
+```
+* `dir_path` is the directory containing too many BMP images
+* `keep`is the number of BMP files to keep (the number of keys on your MIDI keyboard)
+
+## Python3 "thinoutBMPs.py" Script Example
+```bash
+$ ./thinoutBMPs.py bmp_files 61
 ```
 
 ## Bash "get-urls.sh" script
