@@ -1,7 +1,7 @@
 const fs = require("fs");
 const JZZ = require('jzz');
 const minimist = require('minimist');
-const fetch = require('node-fetch');
+const { spawn } = require('child_process');
 
 const info = JZZ().info();
 
@@ -52,6 +52,13 @@ j.connect((msg) => {
     if (process.env['DEBUG']) {
       console.log(`Note On received: note=${note}, velocity=${velocity}, url=${url}`);
     }
-    fetch(url);
+    // Fork wget subprocess to download to /dev/null
+    const wget = spawn('wget', ['-q', '-O', '/dev/null', url], {
+      detached: true,
+      stdio: 'ignore'
+    });
+
+    // Don't wait for the process to finish
+    wget.unref();
   }
 });
